@@ -3,11 +3,15 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
+# Install all deps (including dev) for build
+RUN npm install
 
 COPY . .
 RUN npx prisma generate
 RUN npm run build
+
+# Remove dev deps to keep image small
+RUN npm prune --production
 
 FROM node:18-alpine AS runner
 
