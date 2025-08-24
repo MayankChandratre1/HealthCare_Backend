@@ -27,6 +27,7 @@ export async function initializeSecrets() {
     process.env.JWT_SECRET = await getSecret('JWT_SECRET');
     process.env.DATABASE_URL = await getSecret('DATABASE_URL');
     process.env.GOOGLE_CLOUD_PROJECT = await getSecret('GOOGLE_PROJECT_ID');
+    console.log('Secrets initialized', process.env.JWT_SECRET, process.env.DATABASE_URL, process.env.GOOGLE_CLOUD_PROJECT);
     // Add other secrets as needed
   }
 }

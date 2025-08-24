@@ -48,6 +48,7 @@ export const login = async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
+    console.log('Login error:', error);
     res.status(400).json({ success: false, message: 'Invalid input' });
   }
 };
