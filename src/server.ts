@@ -2,7 +2,7 @@
 import app from './app';
 import { initializeSecrets } from './utils/secrets';
 
-const PORT =  8080;
+const PORT = process.env.PORT || 8080;
 
 async function startServer() {
   try {

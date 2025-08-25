@@ -6,6 +6,9 @@ const client = new SecretManagerServiceClient();
 export async function getSecret(secretName: string): Promise<string> {
   try {
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
+    if (!projectId) {
+      throw new Error('GOOGLE_CLOUD_PROJECT environment variable is not set');
+    }
     const name = `projects/${projectId}/secrets/${secretName}/versions/latest`;
     
     const [version] = await client.accessSecretVersion({ name });
